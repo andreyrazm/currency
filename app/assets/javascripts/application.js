@@ -16,17 +16,34 @@
 
 
 $(document).ready(function () {
-
+    function sendajax(){
+        //alert($('.datepicker').val());
+        $.ajax({
+            url: "/",
+            type: "GET",
+            dataType: "json",
+            data: { datap: $('.datepicker').val() }, // This goes to Controller in params hash, i.e. params[:file_name]
+            //complete: function() {},
+            success: function(data) {
+                //alert(data.dat);
+                $("#dat").text(data.dat);
+                $("#val1").text(data.val1);
+                $("#val2").text(data.val2);
+                $("#cur1").text(data.cur1);
+                $("#cur2").text(data.cur2);
+            },
+            error: function() {
+                alert("Ajax error!")
+            }
+        });
+    };
     $('.datepicker').datepicker({
 
         format: "dd/mm/yyyy"
 
     })
         .datepicker("setValue", $.now())
-        .on('changeDate', function(ev){
-             var dateData = $('.datepicker').val();
-             alert( dateData);
-        });
+        .on('changeDate', function(){ sendajax()});
 
 
 });

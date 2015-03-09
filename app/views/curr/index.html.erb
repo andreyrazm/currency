@@ -1,16 +1,17 @@
-<h1>Curr#index</h1>
-<p>привет</p>
+<div class="section">
+<div class="col-md-6">
+<input type="text" class="datepicker" id="d">
+</div>
 
-<p>Find me in app/views/curr/index.html.erb  <%= @att %> </p>
-
-
-<input type="text" class="datepicker">
-
-<br>
-<p><%= @dat%></p>
-<br>
+<div class="col-md-6">
+  <br>
+  <p id="dat"><%= @dat%></p>
+  <br>
 <table border="1px">
   <tr><th>Валюта</th><th>Курс</th></tr>
-  <tr><td><%=@cur1 %></td><td><%=@val1 %> руб.</td></tr>
-  <tr><td><%=@cur2 %></td><td><%=@val2 %> руб.</td></tr>
+  <tr><td id="cur1"><%=@cur1 %></td><td id="val1"><%=@val1 %> руб.</td></tr>
+  <tr><td id="cur2"><%=@cur2 %></td><td id="val2"><%=@val2 %> руб.</td></tr>
 </table>
+
+</div>
+</div>
