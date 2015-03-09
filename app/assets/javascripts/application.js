@@ -12,4 +12,21 @@
 //
 //= require jquery
 //= require jquery_ujs
+//=require bootstrap-datepicker.js
 
+
+$(document).ready(function () {
+
+    $('.datepicker').datepicker({
+
+        format: "dd/mm/yyyy"
+
+    })
+        .datepicker("setValue", $.now())
+        .on('changeDate', function(ev){
+             var dateData = $('.datepicker').val();
+             alert( dateData);
+        });
+
+
+});
