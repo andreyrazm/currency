@@ -16,6 +16,7 @@
 
 
 $(document).ready(function () {
+
     function sendajax(){
         //alert($('.datepicker').val());
         $.ajax({
@@ -25,9 +26,10 @@ $(document).ready(function () {
             data: { datap: $('.datepicker').val() }, // This goes to Controller in params hash, i.e. params[:file_name]
             //complete: function() {},
             success: function(data) {
+
                     $.each( data.cur, function( index ){
-                    $("#val"+index).text(data.val[index] );
-                    $("#cur"+index).text(data.cur[index]+" руб." );
+                    $("#val"+index).text(data.cur[index]['charcode'] );
+                    $("#cur"+index).text(data.cur[index]['value']+" руб." );
                 });
             },
             error: function() {
