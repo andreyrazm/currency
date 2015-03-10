@@ -2,12 +2,18 @@
     <div class="col-md-4"></div>
 
     <div class="col-md-2">
-
+      <p id="a"><%= @m%></p>
         <table class="table table-striped">
-          <tr><th>Валюта</th><th>Курс</th></tr>
-          <tr><td id="cur1"><%=@cur1 %></td><td id="val1"><%=@val1 %> руб.</td></tr>
-          <tr><td id="cur2"><%=@cur2 %></td><td id="val2"><%=@val2 %> руб.</td></tr>
+          <tr><th>Курс</th><th>Валюта</th></tr>
+          <% @cur.each_with_index do |p, i| %>
+              <tr>
+                <td id="cur<%=i %>"><%=p %></td>
+                <td id="val<%=i %>"><%= @val[i] %></td>
+              </tr>
+          <%end%>
         </table>
-        <input type="text" class="datepicker" id="d">
+    </div>
+    <div class="col-md-1">
+      <input type="text" class="datepicker" id="d">
     </div>
 </div>
