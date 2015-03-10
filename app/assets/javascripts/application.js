@@ -27,7 +27,7 @@ $(document).ready(function () {
             success: function(data) {
                     $.each( data.cur, function( index ){
                     $("#val"+index).text(data.val[index] );
-                    $("#cur"+index).text(data.cur[index] );
+                    $("#cur"+index).text(data.cur[index]+" руб." );
                 });
             },
             error: function() {

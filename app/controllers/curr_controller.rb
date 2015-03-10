@@ -27,17 +27,7 @@ class CurrController < ApplicationController
       @val[i] = xm.root.at_xpath("/ValCurs/Valute["+(i+1).to_s+"]/CharCode").content
     end
 
-    #xm.root.xpath("//Valute").each {|n|
 
-      #Rails.logger.info(n)
-   # }
-
-
-    #@data=xm.root.at_xpath("/ValCurs")
-    #@cur1=xm.root.at_xpath("/ValCurs/Valute[@ID='R01235']/CharCode").content
-    #@val1=xm.root.at_xpath("/ValCurs/Valute[@ID='R01235']/Value").content
-    #@cur2=xm.root.at_xpath("/ValCurs/Valute[@ID='R01239']/CharCode").content
-    #@val2=xm.root.at_xpath("/ValCurs/Valute[@ID='R01239']/Value").content
   end
 
 end

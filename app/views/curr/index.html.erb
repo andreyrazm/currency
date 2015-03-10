@@ -4,11 +4,11 @@
     <div class="col-md-2">
       <p id="a"><%= @m%></p>
         <table class="table table-striped">
-          <tr><th>Курс</th><th>Валюта</th></tr>
+          <tr><th>Валюта</th><th>Курс</th></tr>
           <% @cur.each_with_index do |p, i| %>
               <tr>
-                <td id="cur<%=i %>"><%=p %></td>
                 <td id="val<%=i %>"><%= @val[i] %></td>
+                <td id="cur<%=i %>"><%=p %> руб.</td>
               </tr>
           <%end%>
         </table>
