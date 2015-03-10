@@ -1,17 +1,13 @@
-<div class="section">
-<div class="col-md-6">
-<input type="text" class="datepicker" id="d">
-</div>
+<div class="section"><br><br><br>
+    <div class="col-md-4"></div>
 
-<div class="col-md-6">
-  <br>
-  <p id="dat"><%= @dat%></p>
-  <br>
-<table border="1px">
-  <tr><th>Валюта</th><th>Курс</th></tr>
-  <tr><td id="cur1"><%=@cur1 %></td><td id="val1"><%=@val1 %> руб.</td></tr>
-  <tr><td id="cur2"><%=@cur2 %></td><td id="val2"><%=@val2 %> руб.</td></tr>
-</table>
+    <div class="col-md-2">
 
-</div>
+        <table class="table table-striped">
+          <tr><th>Валюта</th><th>Курс</th></tr>
+          <tr><td id="cur1"><%=@cur1 %></td><td id="val1"><%=@val1 %> руб.</td></tr>
+          <tr><td id="cur2"><%=@cur2 %></td><td id="val2"><%=@val2 %> руб.</td></tr>
+        </table>
+        <input type="text" class="datepicker" id="d">
+    </div>
 </div>

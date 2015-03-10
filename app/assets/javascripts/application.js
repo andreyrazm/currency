@@ -26,24 +26,22 @@ $(document).ready(function () {
             //complete: function() {},
             success: function(data) {
                 //alert(data.dat);
-                $("#dat").text(data.dat);
-                $("#val1").text(data.val1);
-                $("#val2").text(data.val2);
+               // $("#dat").text(data.dat);
+                $("#val1").text(data.val1 + ' руб.');
+                $("#val2").text(data.val2 + ' руб.');
                 $("#cur1").text(data.cur1);
                 $("#cur2").text(data.cur2);
             },
             error: function() {
                 alert("Ajax error!")
             }
-        });
-    };
+        });//$.ajax
+    }//sendajax
+
     $('.datepicker').datepicker({
-
         format: "dd/mm/yyyy"
-
     })
         .datepicker("setValue", $.now())
         .on('changeDate', function(){ sendajax()});
 
-
-});
+});//$(document)
