@@ -29,7 +29,9 @@ $(document).ready(function () {
 
                     $.each( data.cur, function( index ){
                     $("#val"+index).text(data.cur[index]['charcode'] );
-                    $("#cur"+index).text(data.cur[index]['value']+" руб." );
+                    $("#cur"+index).text(data.cur[index]['value']+" руб.")
+                        .append('<span class="glyphicon glyphicon-stats"></span>')
+                        .data("id", data.cur[index]['id']);
                 });
             },
             error: function() {
@@ -44,4 +46,23 @@ $(document).ready(function () {
         .datepicker("setValue", $.now())
         .on('changeDate', function(){ sendajax()});
 
+
+    $('table').on('click','.glyphicon', function(){
+        $.ajax({
+            url: "/curr/stat",
+            type: "GET",
+            dataType: "json",
+            data: { id: $(this).data("id")  }, // This goes to Controller in params hash, i.e. params[:file_name]
+            //complete: function() {},
+            success: function(data) {
+                alert(data.stat[1]['value'])
+
+            },
+            error: function() {
+                alert('fail')
+            }
+        });//$.ajax
+
+
+    });//onclick glyphicon
 });//$(document)
