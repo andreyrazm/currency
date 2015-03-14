@@ -56,6 +56,7 @@ $(document).ready(function () {
             },
 
             rangeSelector : {
+                enabled: false,
                 buttons : [ {
                     type : 'all',
                     count : 1,
