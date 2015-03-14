@@ -54,7 +54,7 @@ $(document).ready(function () {
 
 
             title: {
-                text: 'Rates'
+                text: 'Курсы'
             },
 
             xAxis: {
