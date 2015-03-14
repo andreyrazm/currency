@@ -43,6 +43,12 @@ $(document).ready(function () {
     });//onclick glyphicon
 
     function makeChart(data) {
+        Highcharts.setOptions({
+            lang: {
+                months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',  'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+                shortMonths: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек']
+            }
+        });
         // create the chart
         $('#container').highcharts('StockChart', {
 
@@ -67,7 +73,7 @@ $(document).ready(function () {
             },
 
             series : [{
-                name : 'Price',
+                name : 'Курс',
                 type: 'area',
                 data : data,
 
@@ -88,6 +94,7 @@ $(document).ready(function () {
                         [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
                     ]
                 },
+
                 threshold: null
             }]
         });
