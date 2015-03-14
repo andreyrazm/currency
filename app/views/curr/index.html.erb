@@ -1,3 +1,28 @@
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Currency Rates</h4>
+      </div>
+      <div class="modal-body">
+        <div id="container" style="height: 400px; min-width: 310px"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div class="section"><br><br><br>
     <div class="col-md-4"></div>
 
@@ -8,7 +33,7 @@
         <% @currency.each_with_index do |p, i| %>
             <tr>
               <td id="val<%=i %>"> <%=p[:charcode] %> </td>
-              <td id="cur<%=i %>" ><%=p[:value] %> руб.<span data-id="<%=p[:id]%>" class="glyphicon glyphicon-stats"></span></td>
+              <td id="cur<%=i %>"  data-id="<%=p[:id]%>" ><%=p[:value] %> руб.<span class="glyphicon glyphicon-stats" data-toggle="modal" data-target="#myModal"></span></td>
             </tr>
         <%end%>
       </table>

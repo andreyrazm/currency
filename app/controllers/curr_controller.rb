@@ -1,6 +1,5 @@
 class CurrController < ApplicationController
   def index
-
     if :datap!=nil
       getData(params[:datap].to_s)
     else
@@ -17,22 +16,18 @@ class CurrController < ApplicationController
 
   def stat
     id=params[:id]
-    time1=Time.new.strftime('%d/%m/%Y')
-    time2=(Time.new - 1.month).strftime('%d/%m/%Y')
-    res=RestClient.get 'www.cbr.ru/scripts/XML_dynamic.asp?date_req1='+time2+'&date_req2='+time1+'&VAL_NM_RQ='+id
+    time2=Time.parse(params[:date]).strftime('%d/%m/%Y')
+    time1=(Time.parse(params[:date]) - 1.month).strftime('%d/%m/%Y')
+    res=RestClient.get 'www.cbr.ru/scripts/XML_dynamic.asp?date_req1='+time1+'&date_req2='+time2+'&VAL_NM_RQ='+id
     xm = Nokogiri::XML(res)
-
     @statistics = []
     xm.search("Record").each do |i|
-
-      @statistics << {
-          value: i.xpath('Value').text
-      }
+      @statistics << [
+          Time.parse(i.xpath('@Date').text).to_f * 1000,
+          i.xpath('Value').text.gsub(/,/, '.').to_f
+      ]
     end
     Rails.logger.info(@statistics)
-
-
-
     respond_to do |format|
       format.html{redirect_to :action => 'index'}
       format.json {
@@ -58,11 +53,7 @@ class CurrController < ApplicationController
       }
     end
 
-    #@cur, @val = Array.new(size), Array.new(size)
-    #size.times do |i|
-    #  @cur[i] = xm.root.at_xpath("/ValCurs/Valute["+(i+1).to_s +"]/Value").content
-    #  @val[i] = xm.root.at_xpath("/ValCurs/Valute["+(i+1).to_s+"]/CharCode").content
-   # end
+
 
 
   end
