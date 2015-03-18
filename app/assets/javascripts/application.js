@@ -17,7 +17,8 @@
 $(document).ready(function () {
 
     $('.datepicker').datepicker({
-        format: "dd/mm/yyyy"
+
+            format: "dd/mm/yyyy"
     })
         .datepicker("setValue", $.now())
         .on('changeDate', function(){ sendajax()});
