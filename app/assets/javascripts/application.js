@@ -22,18 +22,22 @@ $(document).ready(function () {
     })
         .datepicker("setValue", $.now())
         .on('changeDate', function(){ sendajax()});
-
+    
 
     $('table').on('click','.glyphicon', function(){
+        $('.modal-content #container').html('<p style="margin-left:35%; font-size:30px"> Загрузка </p>');
 
         $.ajax({
             url: "/curr/stat",
             type: "GET",
             dataType: "json",
-            data: { id: $(this).parent().data("id"),  date: $('.datepicker').val()  }, // This goes to Controller in params hash, i.e. params[:file_name]
+            data: { id: $(this).parent().data("id"),  date: $('.datepicker').val(), name: $(this).parent().data("name")  }, // This goes to Controller in params hash, i.e. params[:file_name]
             //complete: function() {},
             success: function(data) {
-                makeChart(data.stat);
+                if(jQuery.isEmptyObject(data.stat)){$('#container')
+                    .html('<p style="margin-left:20%;">Для данной валюты динамика не доступна</p>')}
+                else makeChart(data.stat, data.name);
+
             },
             error: function() {
                 alert('fail')
@@ -43,8 +47,11 @@ $(document).ready(function () {
 
     });//onclick glyphicon
 
-    function makeChart(data) {
+    function makeChart(data, name) {
+
+
         Highcharts.setOptions({
+
             lang: {
                 months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',  'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
                 shortMonths: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек']
@@ -55,7 +62,7 @@ $(document).ready(function () {
 
 
             title: {
-                text: 'Курсы'
+                text: 'Динамика валют для ' + name
             },
 
             xAxis: {
@@ -99,6 +106,7 @@ $(document).ready(function () {
                 threshold: null
             }]
         });
+
     }//make chart
     function sendajax(){
         //alert($('.datepicker').val());
@@ -107,14 +115,14 @@ $(document).ready(function () {
             type: "GET",
             dataType: "json",
             data: { datap: $('.datepicker').val() }, // This goes to Controller in params hash, i.e. params[:file_name]
-            //complete: function() {},
             success: function(data) {
 
                 $.each( data.cur, function( index ){
                     $("#val"+index).text(data.cur[index]['charcode'] );
                     $("#cur"+index).text(data.cur[index]['value']+" руб.")
                         .append('<span class="glyphicon glyphicon-stats" data-toggle="modal" data-target="#myModal"></span>')
-                        .data("id", data.cur[index]['id']);
+                        .data("id", data.cur[index]['id'])
+                        .data("name", data.cur[index]['charcode']);
                 });
             },
             error: function() {

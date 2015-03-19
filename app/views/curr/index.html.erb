@@ -29,8 +29,8 @@
         <tr><th>Валюта</th><th>Курс</th></tr>
         <% @currency.each_with_index do |p, i| %>
             <tr>
-              <td id="val<%=i %>"> <%=p[:charcode] %> </td>
-              <td id="cur<%=i %>"  data-id="<%=p[:id]%>" ><%=p[:value] %> руб.<span class="glyphicon glyphicon-stats" data-toggle="modal" data-target="#myModal"></span></td>
+              <td id="val<%= i %>" > <%= p[:charcode] %> </td>
+              <td id="cur<%= i %>" data-name="<%= p[:charcode] %>"  data-id="<%= p[:id] %>" ><%= p[:value] %> руб.<span class="glyphicon glyphicon-stats" data-toggle="modal" data-target="#myModal"></span></td>
             </tr>
         <%end%>
       </table>

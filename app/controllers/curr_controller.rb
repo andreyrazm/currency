@@ -15,23 +15,25 @@ class CurrController < ApplicationController
   end
 
   def stat
-    id=params[:id]
+    id = params[:id]
     time2=Time.parse(params[:date]).strftime('%d/%m/%Y')
     time1=(Time.parse(params[:date]) - 1.month).strftime('%d/%m/%Y')
     res=RestClient.get 'www.cbr.ru/scripts/XML_dynamic.asp?date_req1='+time1+'&date_req2='+time2+'&VAL_NM_RQ='+id
     xm = Nokogiri::XML(res)
     @statistics = []
+
     xm.search("Record").each do |i|
       @statistics << [
           Time.parse(i.xpath('@Date').text).to_f * 1000,
           i.xpath('Value').text.gsub(/,/, '.').to_f
       ]
     end
+
     Rails.logger.info(@statistics)
     respond_to do |format|
       format.html{redirect_to :action => 'index'}
       format.json {
-        render json: {stat: @statistics}
+        render json: {stat: @statistics, name: params[:name]}
 
       }
     end
